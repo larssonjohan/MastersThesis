@@ -1,0 +1,55 @@
+{
+    "preparations": {
+        "height_filtered": true,
+        "min_height": 2.5,
+        "max_height": 3.0,
+        "downsample": false,
+        "voxel_size": 0.1
+    },
+
+    "naive_projection": true,
+    "naive_projection_settings": {
+        "resolution": 0.1,
+        "pointcloud": "maps/06-30-5cm.pcd"
+    },
+
+    "partitioned": false,
+    "partitioned_settings": {
+        "partition_height": 1.1,
+        "resolution": 0.1,
+        "pointcloud": "maps/06-30-5cm.pcd"
+    },
+
+    "grid_map_pgm": false,
+    "grid_map_pgm_settings": {
+        "pgm": "pgm/06-30-5cm.pgm",
+        "pointcloud": "maps/06-30-5cm.pcd",
+        "corner": ["L", "B"],
+        "yaml": "yaml/06-30-5cm.yaml"
+    },
+
+    "grid_map_png": false,
+    "grid_map_png_settings": {
+        "png": "result/inputTest.png",
+        "pointcloud": "maps/squared_env_smaller_merged.pcd",
+        "resolution": 0.1
+    },
+
+    "ROSE": {
+        "peak_height": 0.15,
+        "filter_level": 0.2099,
+        "sigma": 0.5
+    },
+
+    "reconstruction": {
+        "insert_floor": true,
+        "insert_ceiling": true
+    },
+
+    "visualization": {
+        "visualize_input_cloud": true,
+        "visualize_decluttered_cloud": true,
+        "visualize_filtered_png": true,
+        "visualize_filtered_pgm": true
+    }
+}

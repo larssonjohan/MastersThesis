@@ -1,0 +1,33 @@
+cmake_minimum_required(VERSION 3.16.3)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+set(CMAKE_CXX17_STANDARD_COMPILE_OPTION "-std=c++17 -O3")
+
+project(shelf-detection)
+find_package(Eigen)
+find_package(OpenMP)
+find_package(PCL 1.10 REQUIRED)
+message(STATUS "PCL Version: " ${PCL_VERSION})
+message(STATUS "PCL Libraries: " ${PCL_LIBRARIES})
+message(STATUS "PCL_LIBRARY_DIRS: " ${PCL_LIBRARY_DIRS})
+message(STATUS "PCL_COMPONENTS: " ${PCL_COMPONENTS})
+message(STATUS "PCL_DIR " ${PCL_DIR})
+message(STATUS "PCL_SAMPLE_CONSESUS_LIBRARIES: " ${PCL_SAMPLE_CONSESUS_LIBRARIES})
+
+add_executable(shelf-detection main.cpp shelf-detection.cpp radius-segment.cpp boundingboxes.cpp visualization.cpp)
+add_executable(merger merger.cpp)
+
+include_directories(include ${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(${PROJECT_NAME} PUBLIC OpenMP::OpenMP_CXX ${PCL_LIBRARIES})
+    target_link_libraries(merger PUBLIC OpenMP::OpenMP_CXX ${PCL_LIBRARIES})
+else()
+    target_link_libraries(${PROJECT_NAME} ${PCL_LIBRARIES})
+endif()
+
+
